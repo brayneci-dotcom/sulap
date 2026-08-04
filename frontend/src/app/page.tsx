@@ -97,14 +97,14 @@ export default function LoginPage() {
         style={{ maxWidth: 440, boxShadow: "0 25px 60px rgba(0,0,0,.25)" }}
       >
         <div className="px-8 py-6 sm:px-10 sm:py-8">
-          {/* Logo + PDF */}
-          <div className="flex flex-col items-center justify-center mb-6">
+          {/* Logo + SULAP */}
+          <main className="flex flex-col items-center justify-center mb-6">
             <img src="/bss-logo.png" alt="Bank Sahabat Sampoerna" className="h-36 w-auto mb-1" />
-            <span className="text-[36px] font-bold text-[#0F2D6C]">SULAP</span>
+            <h1 className="text-[36px] font-bold text-[#0F2D6C]">SULAP</h1>
             <p className="text-sm text-[#5E6980] mt-2 text-center">
               Solusi Unggul, Lengkap, Aman untuk PDF
             </p>
-          </div>
+          </main>
 
           {/* Google Sign-In (GIS-rendered button) */}
           <div id="google-button" className="flex justify-center" />
