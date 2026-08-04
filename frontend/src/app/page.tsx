@@ -117,7 +117,7 @@ export default function LoginPage() {
 
           {/* Security Notice */}
           <div
-            className="rounded-2xl p-6 text-center"
+            className="mt-8 rounded-2xl p-6 text-center"
             style={{ background: "#F7FAFF", border: "1px solid #DCE5F5" }}
           >
             <h3 className="text-[#17397D] mb-3 text-base font-bold">
