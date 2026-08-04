@@ -115,13 +115,6 @@ export default function LoginPage() {
             </p>
           )}
 
-          {/* Divider */}
-          <div className="flex items-center my-8 text-[#8F99AA] text-sm">
-            <span className="flex-1 h-px bg-[#DCE3EF]" />
-            <span className="px-4">atau</span>
-            <span className="flex-1 h-px bg-[#DCE3EF]" />
-          </div>
-
           {/* Security Notice */}
           <div
             className="rounded-2xl p-6 text-center"
