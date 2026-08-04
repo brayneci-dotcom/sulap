@@ -1,0 +1,66 @@
+# Cloud Build — SULAP (CloudPDF Toolkit)
+# Docker build → Artifact Registry → Cloud Run deploy
+#
+# Secrets in Secret Manager:
+#   sulap-db-url       — postgresql+asyncpg://user:pass@host:5432/sulap
+#   sulap-jwt-secret   — random 64-char hex string
+#   sulap-google-id    — Google OAuth client ID
+#   sulap-frontend-url — e.g. https://sulap-xxxx-as.a.run.app
+
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'build'
+      - '-t'
+      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}:${_TAG}'
+      - '-t'
+      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}:latest'
+      - '.'
+
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      - 'push'
+      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}:${_TAG}'
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: 'gcloud'
+    args:
+      - 'run'
+      - 'deploy'
+      - '${_SERVICE_NAME}'
+      - '--image'
+      - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}:${_TAG}'
+      - '--region'
+      - '${_REGION}'
+      - '--platform'
+      - 'managed'
+      - '--port'
+      - '8080'
+      - '--memory'
+      - '1Gi'
+      - '--cpu'
+      - '1'
+      - '--timeout'
+      - '600'
+      - '--max-instances'
+      - '5'
+      - '--concurrency'
+      - '1'
+      - '--allow-unauthenticated'
+      - '--set-env-vars'
+      - 'LOG_LEVEL=INFO,MAX_FILE_SIZE_MB=30,MAX_PAGES_REARRANGE=200'
+      - '--set-secrets'
+      - 'DATABASE_URL=sulap-db-url:latest,SECRET_KEY=sulap-jwt-secret:latest,GOOGLE_CLIENT_ID=sulap-google-id:latest,FRONTEND_URL=sulap-frontend-url:latest'
+
+substitutions:
+  _REGION: asia-southeast2
+  _SERVICE_NAME: sulap
+  _ARTIFACT_REGISTRY: asia-southeast2-docker.pkg.dev
+  _TAG: latest
+
+images:
+  - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}:${_TAG}'
+  - '${_ARTIFACT_REGISTRY}/${PROJECT_ID}/${_SERVICE_NAME}/${_SERVICE_NAME}:latest'
+
+options:
+  logging: CLOUD_LOGGING_ONLY
