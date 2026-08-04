@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "SULAP — Solusi Unggul, Lengkap, Aman untuk PDF",
-  description: "SULAP — Solusi Unggul, Lengkap, Aman untuk PDF. Internal tool Bank Sahabat Sampoerna.",
+  title: "SULAP PDF — Solusi Universal, Lengkap, Aman, Proses PDF",
+  description: "SULAP PDF — Solusi Universal, Lengkap, Aman, Proses PDF. Internal tool Bank Sahabat Sampoerna.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

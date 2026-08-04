@@ -85,9 +85,9 @@ export default function DashboardPage() {
           <div className="flex items-center gap-3">
             <img src={LOGO_URL} alt="BSS Logo" className="h-14 object-contain" />
             <div>
-              <span className="text-lg font-bold text-slate-800 tracking-tight">SULAP</span>
+              <span className="text-lg font-bold text-slate-800 tracking-tight">SULAP PDF</span>
               <span className="block text-[10px] text-slate-400 font-medium uppercase tracking-wider">
-                SULAP v1.0
+                SULAP PDF v1.0
               </span>
             </div>
           </div>

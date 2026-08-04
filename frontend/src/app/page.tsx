@@ -100,9 +100,9 @@ export default function LoginPage() {
           {/* Logo + SULAP */}
           <main className="flex flex-col items-center justify-center mb-6">
             <img src="/bss-logo.png" alt="Bank Sahabat Sampoerna" className="h-36 w-auto mb-1" />
-            <h1 className="text-[36px] font-bold text-[#0F2D6C]">SULAP</h1>
+            <h1 className="text-[36px] font-bold text-[#0F2D6C]">SULAP PDF</h1>
             <p className="text-sm text-[#5E6980] mt-2 text-center">
-              Solusi Unggul, Lengkap, Aman untuk PDF
+              Solusi Universal, Lengkap, Aman, Proses PDF
             </p>
           </main>
 
